@@ -1,5 +1,4 @@
 from argparse import ArgumentParser, Namespace
-from asyncio import run
 import logging as log
 from threading import Thread
 

@@ -19,12 +19,13 @@ def create_output_directory(output_dir: Path = Path("./output/")) -> None:
     return
 
 
-def create_output_file(
-    output_file: Path = Path("./output/output.csv"), file_encoding: str = "csv"
-) -> None:
+def create_output_file(output_file: Path, file_encoding: str = "csv") -> None:
     if not exists(output_file):
         with open(output_file, "w", encoding="UTF-8") as fd:
             if file_encoding.lower() == "csv":
                 fd.write("'latitude','longitude','download','upload'\n")
+
+            elif file_encoding.lower() == "geojson":
+                fd.write('{\n\t"type": "FeatureCollection",\n\t"features": [\n')
 
     return

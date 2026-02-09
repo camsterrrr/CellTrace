@@ -4,9 +4,6 @@ from pathlib import Path
 from src.util.file_system import create_output_directory, create_output_file
 
 
-ENCODINGS = {"csv": 1}
-
-
 def to_csv(lat: int, lon: int, download: int, upload: int) -> str:
     return f"'{lat}','{lon}','{download}','{upload}'\n"
 

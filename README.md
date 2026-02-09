@@ -36,7 +36,7 @@ python -m src.main -h
 To run this program, install the following Python packages.
 
 ```python
-python -m pip install pynmea2 serial speedtest-cli
+python -m pip install pynmea2 pyserial speedtest-cli
 ```
 
 

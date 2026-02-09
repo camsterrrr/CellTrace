@@ -1,0 +1,1 @@
+python -m pip install pynmea2 pyserial speedtest-cli
