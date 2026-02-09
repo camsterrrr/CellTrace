@@ -1,7 +1,9 @@
 from argparse import ArgumentParser, Namespace
 import logging as log
+from pathlib import Path
 from threading import Thread
 
+from src.controller.export import export
 from src.controller.gps import gps
 from src.controller.loop import loop
 from src.controller.network import network
@@ -51,6 +53,13 @@ def configure_argparse() -> Namespace:
         type=int,
     )
 
+    parser.add_argument(
+        "-x",
+        "--export",
+        help="Trigger export capabilities, must provide file path to csv data.",
+        type=Path,
+    )
+
     return parser.parse_args()
 
 
@@ -66,7 +75,7 @@ def configure_logging(user_specified_level: str = "info"):
 
     log.basicConfig(
         datefmt="%Y-%m-%d %H:%M:%S",
-        filename="mobile_monitor.log",
+        filename="cell_trace.log",
         format="%(levelname)s,%(asctime)s,%(message)s",
         level=log_level,
     )
@@ -88,21 +97,24 @@ if __name__ == "__main__":
 
         log.info(
             "\n==================================================="
-            + "\n\t\t\tStarting Mobile Monitor!\t\t\t"
+            + "\n\t\t\tStarting Cell Trace!\t\t\t"
             + "\n==================================================="
         )
 
-        # Start the main thread.
-        gps_monitor = gps(user_args.com)
-        network_monitor = network()
+        if user_args.export:
+            export(user_args.export)
+        else:
+            # Start the main thread.
+            gps_monitor = gps(user_args.com)
+            network_monitor = network()
 
-        # * Thread(target=gps_monitor.gps_spinlock(), daemon=True).start()
-        # * This transfers control to function, not running in background.
+            # * Thread(target=gps_monitor.gps_spinlock(), daemon=True).start()
+            # * This transfers control to function, not running in background.
 
-        Thread(target=gps_monitor.gps_spinlock, daemon=True).start()
-        Thread(target=network_monitor.download_spinlock, daemon=True).start()
-        Thread(target=network_monitor.upload_spinlock, daemon=True).start()
-        loop(gps_monitor, network_monitor, user_args.timeout)
+            Thread(target=gps_monitor.gps_spinlock, daemon=True).start()
+            Thread(target=network_monitor.download_spinlock, daemon=True).start()
+            Thread(target=network_monitor.upload_spinlock, daemon=True).start()
+            loop(gps_monitor, network_monitor, user_args.timeout)
 
     except Exception as err:
         log.error(

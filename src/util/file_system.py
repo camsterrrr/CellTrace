@@ -29,3 +29,7 @@ def create_output_file(output_file: Path, file_encoding: str = "csv") -> None:
                 fd.write('{\n\t"type": "FeatureCollection",\n\t"features": [\n')
 
     return
+
+
+def input_file_exists(input_file: Path) -> bool:
+    return exists(input_file)
