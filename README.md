@@ -1,6 +1,6 @@
-# Mobile Monitor 📶🗼
+# Cell Trace 📶🗼
 
-This tool allows you to continuously monitor and store network throughput metrics and pin it to geographic locations. After collecting the data, you can export it to GeoJSON and import it to Google Earth or GIS applications. This is useful for anyone wishing to map cellular connectivty to geographic locations to identify deadspots, such as high throughput in Salinas and low throughput on Highway 1 in Big Sur.
+This tool allows you to continuously monitor and store cellular network throughput metrics and pin it to geographic locations. After collecting the data, you can export it to GeoJSON and import it to Google Earth or GIS applications. This is useful for anyone wishing to map cellular connectivty to geographic locations to identify deadspots, such as high throughput in Salinas and low throughput on Highway 1 in Big Sur.
 
 The geographic location is captured from a GPS chip. GPS NMEA (National Marine Electronics Association) is the standard ASCII-based communication protocol used by GNSS receivers to transmit data to other devices and communicate global positioning. 
 
