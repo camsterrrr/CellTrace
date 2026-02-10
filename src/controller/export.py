@@ -8,8 +8,8 @@ from src.util.file_system import create_output_file, input_file_exists
 log.getLogger(__name__)
 
 
-WEAK: int = 5_000_000  # Mbps
-MEDIUM: int = 25_000_000  # Mbps
+WEAK: int = 5_000_000  # 5 Mbps
+MEDIUM: int = 25_000_000  # 25 Mbps
 
 
 def convert_rows(list_to_write: list[float, float, float, float], output_file: Path):
